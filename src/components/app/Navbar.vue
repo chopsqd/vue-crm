@@ -11,10 +11,10 @@
       <ul class="right hide-on-small-and-down">
         <li>
           <a
-              class="dropdown-trigger black-text"
-              href="#"
-              data-target="dropdown"
-              ref="dropdown"
+            class="dropdown-trigger black-text"
+            href="#"
+            data-target="dropdown"
+            ref="dropdown"
           >
             USER NAME
             <i class="material-icons right">arrow_drop_down</i>
@@ -47,7 +47,8 @@ export default {
     dropdown: null
   }),
   methods: {
-    logout() {
+    async logout() {
+      await this.$store.dispatch('auth/logout')
       this.$router.push('/login?message=logout')
     }
   },

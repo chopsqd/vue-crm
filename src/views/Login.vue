@@ -45,7 +45,7 @@
           v-else-if="$v.password.$dirty && !$v.password.minLength"
           class="helper-text invalid"
         >
-          Пароль должен быть {{$v.password.$params.minLength.min}} символов. Сейчас он {{ password.length }}
+          Пароль должен быть {{ $v.password.$params.minLength.min }} символов. Сейчас он {{ password.length }}
         </small>
       </div>
     </div>
@@ -83,13 +83,21 @@ export default {
     password: {required, minLength: minLength(6)}
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch()
         return
       }
 
-      this.$router.push('/')
+      const formData = {
+        email: this.email,
+        password: this.password
+      }
+
+      const user = await this.$store.dispatch('auth/login', formData)
+      if (user) {
+        this.$router.push('/')
+      }
     }
   },
   mounted() {
