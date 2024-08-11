@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'Sidebar',
   props: ['value'],
   data: () => ({
     links: [

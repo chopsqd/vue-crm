@@ -30,6 +30,7 @@ export default {
     },
     async logout({commit}) {
       try {
+        commit('info/clearInfo', null, {root: true})
         return await signOut(auth);
       } catch (error) {
         commit('error/setError', error, {root: true})
