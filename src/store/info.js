@@ -1,5 +1,5 @@
 import {auth, db} from '@/main'
-import {ref, get} from 'firebase/database';
+import {ref, get, update} from 'firebase/database';
 
 export default {
   namespaced: true,
@@ -24,6 +24,18 @@ export default {
         commit('setInfo', info);
       } catch (error) {
         commit('error/setError', error, {root: true})
+      }
+    },
+    async updateInfo({commit, getters}, toUpdate) {
+      try {
+        const infoRef = ref(db, `/users/${auth.currentUser.uid}/info`);
+        const updateData = {...getters.info, ...toUpdate}
+        await update(infoRef, updateData);
+
+        commit('setInfo', updateData);
+      } catch (e) {
+        commit('setError', e)
+        throw e
       }
     }
   },

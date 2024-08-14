@@ -5,7 +5,7 @@ import {ref, set} from 'firebase/database';
 export default {
   namespaced: true,
   actions: {
-    async login({dispatch, commit}, {email, password}) {
+    async login({commit}, {email, password}) {
       try {
         return await signInWithEmailAndPassword(auth, email, password);
       } catch (error) {
@@ -13,7 +13,7 @@ export default {
         commit('error/setError', error, {root: true})
       }
     },
-    async register({dispatch, commit}, {email, password, name}) {
+    async register({commit}, {email, password, name}) {
       try {
         const {user} = await createUserWithEmailAndPassword(auth, email, password);
 
