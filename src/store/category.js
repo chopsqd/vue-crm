@@ -16,6 +16,18 @@ export default {
         commit('error/setError', error, {root: true})
       }
     },
+    async fetchCategoryById({commit}, id) {
+      try {
+        const categoryRef = ref(db, `users/${auth.currentUser.uid}/categories/${id}`);
+
+        const snapshot = await get(categoryRef);
+        const category = snapshot.val() || {};
+
+        return {...category, id}
+      } catch (error) {
+        commit('error/setError', error, {root: true})
+      }
+    },
     async createCategory({commit}, {title, limit}) {
       try {
         const categoriesRef = ref(db, `users/${auth.currentUser.uid}/categories`);

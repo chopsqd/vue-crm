@@ -8,36 +8,70 @@
       <canvas></canvas>
     </div>
 
-    <section>
-      <table>
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>Сумма</th>
-          <th>Дата</th>
-          <th>Категория</th>
-          <th>Тип</th>
-          <th>Открыть</th>
-        </tr>
-        </thead>
+    <Loader v-if="isLoading"/>
 
-        <tbody>
-        <tr>
-          <td>1</td>
-          <td>1212</td>
-          <td>12.12.32</td>
-          <td>name</td>
-          <td>
-            <span class="white-text badge red">Расход</span>
-          </td>
-          <td>
-            <button class="btn-small btn">
-              <i class="material-icons">open_in_new</i>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <section v-else-if="records.length">
+      <HistoryTable
+        :records="items"
+      />
+
+      <Paginate
+        v-model="page"
+        :page-count="pageCount"
+        :click-handler="pageChangeHandler"
+        prev-text="Назад"
+        next-text="Вперед"
+        container-class="pagination"
+        page-class="waves-effect"
+      />
     </section>
+
+    <p
+      v-else
+      class="center"
+    >
+      Записей пока нет.
+
+      <router-link to="/record">Добавьте первую</router-link>
+    </p>
   </div>
 </template>
+
+<script>
+import paginationMixin from "@/mixins/pagination.mixin";
+import HistoryTable from "@/components/history/HistoryTable.vue";
+
+export default {
+  name: 'History',
+  components: {
+    HistoryTable
+  },
+  mixins: [paginationMixin],
+  data: () => ({
+    isLoading: true,
+    records: []
+  }),
+  async mounted() {
+    const [records, categories] = await Promise.all([
+      this.$store.dispatch('record/fetchRecords'),
+      this.$store.dispatch('category/fetchCategories')
+    ]);
+
+    const categoriesMap = categories.reduce((acc, category) => {
+      acc[category.id] = category.title;
+      return acc;
+    }, {});
+
+    this.records = records.map(record => ({
+      ...record,
+      categoryName: categoriesMap[record.categoryId] || 'Неизвестная категория',
+      typeClass: record.type === 'income' ? 'green' : 'red',
+      typeText: record.type === 'income' ? 'Доход' : 'Расход',
+    }));
+
+    this.setupPagination(this.records)
+
+    this.isLoading = false
+  }
+}
+</script>

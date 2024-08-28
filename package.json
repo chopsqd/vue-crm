@@ -9,10 +9,12 @@
   "dependencies": {
     "core-js": "^3.8.3",
     "firebase": "^10.12.5",
+    "lodash": "^4.17.19",
     "materialize-css": "^1.0.0-rc.2",
     "register-service-worker": "^1.7.2",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
+    "vuejs-paginate": "^2.1.0",
     "vuelidate": "^0.7.5",
     "vuex": "^3.6.2"
   },

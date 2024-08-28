@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuelidate from 'vuelidate'
+import Paginate from 'vuejs-paginate'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -23,6 +24,7 @@ Vue.directive('tooltip', tooltipDirective)
 Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
 Vue.component('Loader', Loader)
+Vue.component('Paginate', Paginate)
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

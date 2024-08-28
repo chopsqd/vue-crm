@@ -15,6 +15,17 @@ export default {
         commit('error/setError', error, {root: true})
       }
     },
+    async fetchRecordById({commit}, id) {
+      try {
+        const recordRef = ref(db, `users/${auth.currentUser.uid}/records/${id}`);
+        const snapshot = await get(recordRef);
+        const record = snapshot.val() || {};
+
+        return {...record, id}
+      } catch (error) {
+        commit('error/setError', error, {root: true})
+      }
+    },
     async createRecord({commit}, recordData) {
       try {
         const recordsRef = ref(db, `users/${auth.currentUser.uid}/records`);

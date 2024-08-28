@@ -56,8 +56,10 @@ export default {
     }
   },
   async mounted() {
-    const records = await this.$store.dispatch('record/fetchRecords')
-    const categories = await this.$store.dispatch('category/fetchCategories')
+    const [records, categories] = await Promise.all([
+      this.$store.dispatch('record/fetchRecords'),
+      this.$store.dispatch('category/fetchCategories')
+    ]);
 
     this.categories = categories.map(cat => {
       const spend = records.reduce((total, record) => {
