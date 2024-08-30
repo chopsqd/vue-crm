@@ -1,0 +1,19 @@
+{
+  "Error_EnterName": "Enter Name",
+  "Name": "Name",
+  "Update": "Update",
+  "Menu_Bill": "Bill",
+  "Menu_History": "History",
+  "Menu_Planning": "Planning",
+  "Menu_NewRecord": "New Record",
+  "Menu_Categories": "Categories",
+  "Title_Profile": "Profile",
+  "Title_Bill": "Bill",
+  "Title_History": "History",
+  "Title_Planing": "Planing",
+  "Title_Record": "New Record",
+  "Title_Categories": "Categories",
+  "Title_Detail": "Detail",
+  "Title_Login": "Login",
+  "Title_Register": "Register"
+}

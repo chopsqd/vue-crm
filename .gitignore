@@ -4,6 +4,7 @@ node_modules
 /src/config.js
 
 # local env files
+.env
 .env.local
 .env.*.local
 

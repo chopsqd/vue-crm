@@ -32,6 +32,9 @@ import HomeCurrency from "@/components/home/HomeCurrency.vue";
 
 export default {
   name: 'Home',
+  metaInfo: () => ({
+    title: this.$title('Title_Bill')
+  }),
   components: {
     HomeBill,
     HomeCurrency

@@ -110,6 +110,9 @@ import {minValue, required} from "vuelidate/lib/validators";
 
 export default {
   name: 'Record',
+  metaInfo: () => ({
+    title: this.$title('Title_Record')
+  }),
   data: () => ({
     select: null,
     isLoading: true,

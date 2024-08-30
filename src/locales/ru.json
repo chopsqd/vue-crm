@@ -1,0 +1,19 @@
+{
+  "Error_EnterName": "Введите имя",
+  "Name": "Имя",
+  "Update": "Обновить",
+  "Menu_Bill": "Счет",
+  "Menu_History": "История",
+  "Menu_Planning": "Планирование",
+  "Menu_NewRecord": "Новая запись",
+  "Menu_Categories": "Категории",
+  "Title_Profile": "Профиль",
+  "Title_Bill": "Счет",
+  "Title_History": "История",
+  "Title_Planing": "Планирование",
+  "Title_Record": "Новая запись",
+  "Title_Categories": "Категории",
+  "Title_Detail": "Детали",
+  "Title_Login": "Авторизация",
+  "Title_Register": "Регистрация"
+}

@@ -28,6 +28,9 @@ import CategoryEdit from "@/components/category/CategoryEdit.vue";
 
 export default {
   name: 'Categories',
+  metaInfo: () => ({
+    title: this.$title('Title_Categories')
+  }),
   data: () => ({
     categories: [],
     isLoading: true,

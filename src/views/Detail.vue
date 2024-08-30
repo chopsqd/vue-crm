@@ -50,6 +50,9 @@
 <script>
 export default {
   name: 'Detail',
+  metaInfo: () => ({
+    title: this.$title('Title_Detail')
+  }),
   data: () => ({
     isLoading: true,
     record: null

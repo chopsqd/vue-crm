@@ -5,7 +5,10 @@
     <div v-else class="app-main-layout">
       <Navbar @toggle="isNavbarOpen = !isNavbarOpen"/>
 
-      <Sidebar v-model="isNavbarOpen"/>
+      <Sidebar
+        v-model="isNavbarOpen"
+        :key="locale"
+      />
 
       <main class="app-content" :class="{full: !isNavbarOpen}">
         <div class="app-page">
@@ -36,6 +39,11 @@ export default {
     isNavbarOpen: false,
     loading: true
   }),
+  computed: {
+    locale() {
+      return this.$store.getters["info/info"].locale
+    }
+  },
   async mounted() {
     if (!Object.keys(this.$store.getters["info/info"]).length) {
       await this.$store.dispatch('info/fetchInfo')
